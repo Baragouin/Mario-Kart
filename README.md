@@ -2,20 +2,20 @@
 
 The goal of the project is to recreate a Mario Kart with our own twist 🛵 Try to push the CSFML a little further 🚀
 
-How does it work?
+## How does it work?
 
 [Explain how this project is working]
 
-Getting Started
+## Getting Started
 
-Installation
+### Installation
 
 [Explain how to install all of the project's dependencies]
 
-Quickstart
+### Quickstart
 
 [Explain how to run this project]
 
-Usage
+### Usage
 
 [Explain how to use this project]
