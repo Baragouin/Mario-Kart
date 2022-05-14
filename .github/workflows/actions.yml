@@ -5,14 +5,14 @@ jobs:
     name: 'Install dependancies'
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt update && sudo apt install curl libx11-dev libxmu-dev libxi-dev libgl-dev libopenal-dev
+      - run: sudo apt-get update && sudo apt install curl libx11-dev libxrandr-dev libxmu-dev libxi-dev libgl-dev libopenal-dev
   CSFML-installation:
     name: 'Install CSFML from sources'
     runs-on: ubuntu-latest
     needs: [Dependencies]
     steps:
       - run: curl -Lo SFML.zip https://www.sfml-dev.org/files/SFML-2.5.1-sources.zip
-      - run: sudo apt update && sudo apt install curl libx11-dev libxmu-dev
+      - run: sudo apt update && sudo apt install curl libx11-dev libxrandr-dev libxmu-dev libxi-dev libgl-dev libopenal-dev
       - run: pwd
       - run: ls
       - run: unzip -qq -o SFML.zip
