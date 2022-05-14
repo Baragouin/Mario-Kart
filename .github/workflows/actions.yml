@@ -28,6 +28,6 @@ jobs:
     name: Compile code with Makefile
     runs-on: ubuntu-latest
     steps:
-      uses: actions/checkout@v3
-      run: make
+      - uses: actions/checkout@v3
+        run: make
 
