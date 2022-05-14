@@ -1,63 +1,64 @@
 name: Code validator
 on: [ pull_request, push ]
 
-env:
-  DEPENDENCIES: curl libx11-dev libxrandr-dev libxmu-dev libxi-dev libgl-dev libopenal-dev
-  SFML_URL: https://www.sfml-dev.org/files/SFML-2.5.1-sources.zip
-  CSFML_URL: https://www.sfml-dev.org/files/CSFML-2.5.1-sources.zip
-  CSFML_PARAMS: -DSFML_ROOT="../SFML" -DSFML_INCLUDE_DIR="../SFML/include" -DCMAKE_MODULE_PATH="../SFML/cmake/Modules"
+#env:
+  #DEPENDENCIES: curl libx11-dev libxrandr-dev libxmu-dev libxi-dev libgl-dev libopenal-dev
+  #SFML_URL: https://www.sfml-dev.org/files/SFML-2.5.1-sources.zip
+  #CSFML_URL: https://www.sfml-dev.org/files/CSFML-2.5.1-sources.zip
+  #CSFML_PARAMS: -DSFML_ROOT="../SFML" -DSFML_INCLUDE_DIR="../SFML/include" -DCMAKE_MODULE_PATH="../SFML/cmake/Modules"
 
 jobs:
-  Dependencies:
-    name: 'Install dependencies'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Update package manager'
-        run: sudo apt-get update
-      - name: 'Install dependencies'
-        run: sudo apt install $DEPENDENCIES
-  Sources-downloading:
-    name: 'Download SFML & CSFML sources'
-    runs-on: ubuntu-latest
-    needs: Dependencies
-    steps:
-      - name: 'Download SFML & CSFML sources'
-        run: |
-          curl -Lo SFML.zip $SFML_URL
-          curl -Lo CSFML.zip $CSFML_URL
-      - name: 'Unzip and format files'
-        run: |
-          unzip -qq -o SFML.zip && mv SFML-* SFML
-          unzip -qq -o CSFML.zip && mv CSFML-* CSFML
-  CSFML-installation:
-    name: 'Compile SFML & CSFML'
-    runs-on: ubuntu-latest
-    needs: Sources-downloading
-    steps:
-      - name: 'RUN: ls'
-        run: ls
-      - name: 'RUN: tree'
-        run: tree -L 2
-      - name: 'Compile SFML'
-        run: |
-          cd SFML
-          cmake .
-          make
-          make install
-      - name: 'Compile CSFML'
-        run: |
-          cd CSFML
-          cmake $CSFML_PARAMS .
-          make
-          make install
-      - name: 'Link libraries'
-        run: |
-          echo "/usr/local/lib/" > /etc/ld.so.conf.d/csfml.conf
-          ldconfig
+#  Dependencies:
+#    name: 'Install dependencies'
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: 'Update package manager'
+#        run: sudo apt-get update
+#      - name: 'Install dependencies'
+#        run: sudo apt install $DEPENDENCIES
+#  Sources-downloading:
+#    name: 'Download SFML & CSFML sources'
+#    runs-on: ubuntu-latest
+#    needs: Dependencies
+#    steps:
+#      - name: 'Download SFML & CSFML sources'
+#        run: |
+#          curl -Lo SFML.zip $SFML_URL
+#          curl -Lo CSFML.zip $CSFML_URL
+#      - name: 'Unzip and format files'
+#        run: |
+#          unzip -qq -o SFML.zip && mv SFML-* SFML
+#          unzip -qq -o CSFML.zip && mv CSFML-* CSFML
+#  CSFML-installation:
+#    name: 'Compile SFML & CSFML'
+#    runs-on: ubuntu-latest
+#    needs: Sources-downloading
+#    steps:
+#      - name: 'RUN: ls'
+#        run: ls
+#      - name: 'RUN: tree'
+#        run: tree -L 2
+#      - name: 'Compile SFML'
+#        run: |
+#          cd SFML
+#          cmake .
+#          make
+#          make install
+#      - name: 'Compile CSFML'
+#        run: |
+#          cd CSFML
+#          cmake $CSFML_PARAMS .
+#          make
+#          make install
+#      - name: 'Link libraries'
+#        run: |
+#          echo "/usr/local/lib/" > /etc/ld.so.conf.d/csfml.conf
+#          ldconfig
   Compilation:
     name: Compile code with Makefile
     runs-on: ubuntu-latest
-    needs: CSFML-installation
+    container: epitechcontent/epitest-docker
+    #needs: CSFML-installation
     steps:
       - uses: actions/checkout@v3
       - name: 'Compile project with make'
