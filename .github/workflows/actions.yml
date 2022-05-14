@@ -12,6 +12,7 @@ jobs:
     needs: [Dependencies]
     steps:
       - run: curl -Lo SFML.zip https://www.sfml-dev.org/files/SFML-2.5.1-sources.zip
+      - run: sudo apt update && sudo apt install curl libx11-dev libxmu-dev
       - run: pwd
       - run: ls
       - run: unzip -qq -o SFML.zip
