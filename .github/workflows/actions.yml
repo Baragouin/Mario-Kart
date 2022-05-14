@@ -1,23 +1,23 @@
-name: Code validator
+name: CI
 on: [ pull_request, push ]
 
 jobs:
-  lint:
-    name: 'Lint codebase'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: 'Execute linter'
-        uses: cpp-linter/cpp-linter-action@v1
-        id: linter
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          style: file
-
-      - name: 'Check linter output'
-        if: steps.linter.outputs.checks-failed > 0
-        run: echo "Some files failed the linting checks!"
+#  lint:
+#    name: 'Lint codebase'
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: 'Execute linter'
+#        uses: cpp-linter/cpp-linter-action@v1
+#        id: linter
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          style: file
+#
+#      - name: 'Check linter output'
+#        if: steps.linter.outputs.checks-failed > 0
+#        run: echo "Some files failed the linting checks!"
   build:
     name: 'Build code with Makefile'
     runs-on: ubuntu-latest
