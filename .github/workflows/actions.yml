@@ -32,7 +32,7 @@ jobs:
   CSFML-installation:
     name: 'Compile SFML & CSFML'
     runs-on: ubuntu-latest
-    needs: Source-downloading
+    needs: Sources-downloading
     steps:
       - name: 'RUN: ls'
         run: ls
