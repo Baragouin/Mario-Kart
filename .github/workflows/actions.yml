@@ -18,10 +18,10 @@ jobs:
       - run: mv SFML-* SFML
       - run: ls SFML/
       - run: |
-        cd SFML
-        cmake .
-        make
-        make install
+          cd SFML
+          cmake .
+          make
+          make install
       - run: curl -Lo CSFML.zip https://www.sfml-dev.org/files/CSFML-2.5.1-sources.zip
       - run: unzip -qq -o CSFML.zip
       - run: mv CSFML-* CSFML
