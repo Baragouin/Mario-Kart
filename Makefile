@@ -11,7 +11,6 @@ CFLAGS += -Wall -Wextra -Iinclude
 CFLAGS += -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
 
 $(NAME): $(OBJ)
-	make -C lib/my
 	$(CC) $(OBJ) -o $(NAME) $(CFLAGS)
 
 all: $(NAME)
