@@ -20,17 +20,17 @@ jobs:
       - run: ls SFML/
       - run: |
           cd SFML
-          cmake .
+          cmake . -DUDEV_PATH_INCLUDES=/opt/udev/include
           make
           make install
       - run: curl -Lo CSFML.zip https://www.sfml-dev.org/files/CSFML-2.5.1-sources.zip
       - run: unzip -qq -o CSFML.zip
       - run: mv CSFML-* CSFML
-      - run: cd CSFML
-      - run: cmake -DSFML_ROOT="../SFML" -DSFML_INCLUDE_DIR="../SFML/include" -DCMAKE_MODULE_PATH="../SFML/cmake/Modules" .
-      - run: make
-      - run: make install
-      - run: cd ..
+      - run: |
+      	  cd CSFML
+          cmake -DSFML_ROOT="../SFML" -DSFML_INCLUDE_DIR="../SFML/include" -DCMAKE_MODULE_PATH="../SFML/cmake/Modules" .
+          make
+	  make install
       - run: echo "/usr/local/lib/" > /etc/ld.so.conf.d/csfml.conf
       - run: ldconfig
   Compilation:
