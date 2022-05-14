@@ -57,7 +57,7 @@ jobs:
   Compilation:
     name: Compile code with Makefile
     runs-on: ubuntu-latest
-    container: epitechcontent/epitest-docker
+    container: baragouin/csfml:0.1
     #needs: CSFML-installation
     steps:
       - uses: actions/checkout@v3
