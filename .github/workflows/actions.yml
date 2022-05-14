@@ -17,8 +17,7 @@ jobs:
 
       - name: 'Check linter output'
         if: steps.linter.outputs.checks-failed > 0
-        run: |
-          echo "Some files failed the linting checks!"
+        run: echo "Some files failed the linting checks!"
   build:
     name: 'Build code with Makefile'
     runs-on: ubuntu-latest
