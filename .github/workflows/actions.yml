@@ -5,25 +5,25 @@ jobs:
     name: 'Install CSFML from sources'
     runs-on: ubuntu-latest
     steps:
-      run: sudo apt update && sudo apt install curl
-      run: curl -Lo SFML.zip https://www.sfml-dev.org/files/SFML-2.5.1-sources.zip
-      run: unzip -qq -o SFML.zip
-      run: mv SFML-* SFML
-      run: cd SFML
-      run: cmake .
-      run: make
-      run: make install
-      run: cd ..
-      run: curl -Lo CSFML.zip https://www.sfml-dev.org/files/CSFML-2.5.1-sources.zip
-      run: unzip -qq -o CSFML.zip
-      run: mv CSFML-* CSFML
-      run: cd CSFML
-      run: cmake -DSFML_ROOT="../SFML" -DSFML_INCLUDE_DIR="../SFML/include" -DCMAKE_MODULE_PATH="../SFML/cmake/Modules" .
-      run: make
-      run: make install
-      run: cd ..
-      run: echo "/usr/local/lib/" > /etc/ld.so.conf.d/csfml.conf
-      run: ldconfig
+      - run: sudo apt update && sudo apt install curl
+      - run: curl -Lo SFML.zip https://www.sfml-dev.org/files/SFML-2.5.1-sources.zip
+      - run: unzip -qq -o SFML.zip
+      - run: mv SFML-* SFML
+      - run: cd SFML
+      - run: cmake .
+      - run: make
+      - run: make install
+      - run: cd ..
+      - run: curl -Lo CSFML.zip https://www.sfml-dev.org/files/CSFML-2.5.1-sources.zip
+      - run: unzip -qq -o CSFML.zip
+      - run: mv CSFML-* CSFML
+      - run: cd CSFML
+      - run: cmake -DSFML_ROOT="../SFML" -DSFML_INCLUDE_DIR="../SFML/include" -DCMAKE_MODULE_PATH="../SFML/cmake/Modules" .
+      - run: make
+      - run: make install
+      - run: cd ..
+      - run: echo "/usr/local/lib/" > /etc/ld.so.conf.d/csfml.conf
+      - run: ldconfig
   Compilation:
     name: Compile code with Makefile
     runs-on: ubuntu-latest
