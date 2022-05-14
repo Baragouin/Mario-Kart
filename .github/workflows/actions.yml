@@ -12,13 +12,16 @@ jobs:
     needs: [Dependencies]
     steps:
       - run: curl -Lo SFML.zip https://www.sfml-dev.org/files/SFML-2.5.1-sources.zip
+      - run: pwd
+      - run: ls
       - run: unzip -qq -o SFML.zip
       - run: mv SFML-* SFML
-      - run: cd SFML
-      - run: cmake .
-      - run: make
-      - run: make install
-      - run: cd ..
+      - run: ls SFML/
+      - run: |
+        cd SFML
+        cmake .
+        make
+        make install
       - run: curl -Lo CSFML.zip https://www.sfml-dev.org/files/CSFML-2.5.1-sources.zip
       - run: unzip -qq -o CSFML.zip
       - run: mv CSFML-* CSFML
